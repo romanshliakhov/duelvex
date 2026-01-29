@@ -31,16 +31,16 @@
 		}
 
 		.select_dark & {
-			background-color: #393939;
-			border-color: #393939;
-			color: #f8f9ec;
+			background-color: #F6F3EC;
+			border-color: #F6F3EC;
+			color: #2A2A2A;
 		}
 
 		._select-active & {
 			color: #2a2a2a;
 		}
 		._select-active.select_dark & {
-			color: #f8f9ec;
+			color: #2A2A2A;
 		}
 		._select-focus.select_dark & {
 			border-color: #f8f9ec;
@@ -107,7 +107,7 @@
 	}
 	// .select__options
 	&__options {
-		color: #000;
+		color: #2A2A2A;
 		position: absolute;
 		top: calc(100% - toRem(1));
 		border-radius: 0 0 4px 4px;
@@ -115,7 +115,7 @@
 		left: 0;
 		background-color: #fff;
 		border: toRem(1) solid #737373;
-		background-color: #f8f9ec;
+		background-color: #F6F3EC;
 		// border-top: 0;
 		padding: 10px 0px 5px 0px;
 
@@ -123,7 +123,7 @@
 		}
 
 		.select_dark & {
-			background-color: #393939;
+			background-color: #F6F3EC;
 			border-color: #f8f9ec;
 		}
 	}
@@ -155,7 +155,7 @@
 		color: #000;
 
 		&._select-selected {
-			background-color: #eee;
+			background-color: #F65C5F;
 		}
 
 		@media (any-hover: hover) {
@@ -165,11 +165,12 @@
 		}
 
 		.select_dark & {
-			color: #f8f9ec;
+			color: #2A2A2A;
 
 			@media (any-hover: hover) {
 				&:hover {
-					background: #616161;
+					background: #F65C5F;
+					color: #F6F3EC;
 				}
 			}
 		}

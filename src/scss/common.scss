@@ -4,10 +4,11 @@
 
 .title {
 	font-family: var(--second-family);
-	font-weight: 400;
-	@include adaptiveValue("font-size", 64, 48);
-	line-height: 91%;
-	letter-spacing: -0.02em;
+	font-weight: 700;
+	@include adaptiveValue("font-size", 22, 24);
+	line-height: 241%;
+	// letter-spacing: -0.02em;
+	color: #2A2A2A;
 	text-transform: uppercase;
 }
 
@@ -23,7 +24,7 @@
 	font-weight: 400;
 	font-size: toRem(16);
 	line-height: 175%;
-	color: #b2b2b2;
+	color: #737373;
 }
 
 //========================================================================================================================================================
