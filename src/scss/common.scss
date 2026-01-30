@@ -3,21 +3,21 @@
 //========================================================================================================================================================
 
 .title {
-	font-family: var(--second-family);
+	font-family: var(--font-family);
 	font-weight: 700;
 	@include adaptiveValue("font-size", 22, 24);
 	line-height: 241%;
-	// letter-spacing: -0.02em;
 	color: #2A2A2A;
 	text-transform: uppercase;
 }
 
 .title-second {
-	font-family: var(--second-family);
-	font-weight: 400;
-	font-size: toRem(24);
-	// line-height: 92%;
-	// letter-spacing: -0.04em;
+	font-family: var(--font-family);
+	font-weight: 700;
+	@include adaptiveValue("font-size", 22, 24);
+	line-height: 140%;
+	color: #2A2A2A;
+	text-transform: uppercase;
 }
 
 .text {
@@ -34,7 +34,7 @@
 	justify-content: center;
 	align-items: center;
 
-	background-color: #f8f9ec;
+	background-color: #F6F3EC;
 	border-radius: toRem(16);
 	padding: toRem(5) toRem(10);
 
@@ -44,8 +44,8 @@
 	color: #2a2a2a;
 
 	&_purple {
-		background-color: #8b5cf6;
-		color: #f8f9ec;
+		background-color: #8E8E8E;
+		color: #FFF;
 	}
 }
 

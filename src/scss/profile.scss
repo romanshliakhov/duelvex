@@ -106,8 +106,6 @@
 	}
 
 	&__title {
-		font-family: var(--font-family);
-		font-weight: 700;
 	}
 
 	&__text {
@@ -298,13 +296,18 @@
 	&__title {
 		max-width: toRem(330);
 		margin-bottom: toRem(20);
+		color: #F8F9EC;
+		text-transform: none;
 	}
 
 	&__text {
 		max-width: toRem(350);
+		color: #F8F9EC;
 	}
 
 	&__button {
+		background-color: #F8F9EC;
+		color: #2A2A2A;
 	}
 	& > :last-child {
 		margin-bottom: 0;
@@ -315,8 +318,7 @@
 .cognitive-function {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
-
+	align-items: center;
 	background-color: #2a2a2a;
 	border-radius: toRem(30);
 	padding: toRem(40) toRem(20);
@@ -332,12 +334,15 @@
 	&__title {
 		hyphens: auto;
 		word-break: break-word;
-		line-height: 92%;
 		text-transform: uppercase;
 		letter-spacing: -0.04em;
+		color: #F8F9EC;
 	}
 
 	&__text {
+		color: #F8F9EC;
+		line-height: 125%;
+		text-align: center;
 	}
 
 	& > :last-child {
@@ -348,16 +353,12 @@
 //========================================================================================================================================================
 
 .item-game {
-	border-radius: toRem(30);
-	padding: toRem(20) toRem(20) toRem(40);
-	background-color: #2a2a2a;
-
 	display: flex;
 	flex-direction: column;
 	&__image {
 		border-radius: toRem(12);
 		overflow: hidden;
-		aspect-ratio: 268 / 199;
+		aspect-ratio: 1;
 
 		&:not(:last-child) {
 			@include adaptiveValue("margin-bottom", 40, 24);
@@ -407,7 +408,7 @@
 	&__text {
 		flex: 1;
 		line-height: 106.3%; /* 17/16 */
-		color: #f8f9ec;
+		color: #737373;
 	}
 
 	&__labels {
@@ -438,7 +439,7 @@
 	&__title {
 		text-wrap: balance;
 		&:not(:last-child) {
-			@include adaptiveValue("margin-bottom", 110, 40);
+			@include adaptiveValue("margin-bottom", 40, 40);
 		}
 	}
 
@@ -466,8 +467,8 @@
 		font-weight: 700;
 		@include adaptiveValue("font-size", 18, 16);
 		line-height: 144%;
-		color: #f8f9ec;
-		background-color: #2a2a2a;
+		color: #2A2A2A;
+		background-color: #F6F3EC;
 
 		display: flex;
 		align-items: center;
@@ -510,15 +511,15 @@
 		th {
 			border: 0;
 			cursor: pointer;
-			background-color: #2a2a2a;
+			// background-color: #2a2a2a;
 
-			padding: toRem(13) toRem(20);
+			padding: toRem(21) toRem(20);
 
 			font-weight: 600;
 			font-size: toRem(14);
 			line-height: 129%;
 			text-transform: uppercase;
-			color: #f8f9ec;
+			color: #2A2A2A;
 			text-align: start;
 
 			&:first-child {
@@ -540,7 +541,7 @@
 			font-weight: 400;
 			font-size: toRem(14);
 			line-height: 143%;
-			color: #f8f9ec;
+			color: #2A2A2A;
 
 			@media (max-width: $tablet) {
 				min-width: toRem(190);
@@ -555,7 +556,11 @@
 		}
 		tbody {
 			tr {
-				border-bottom: 1px solid #2a2a2a;
+				border-bottom: 1px solid #B2B2B2;
+
+				&:first-child {
+					border-top: 1px solid #B2B2B2;
+				}
 			}
 		}
 	}
@@ -590,6 +595,7 @@
 	}
 
 	&__title {
+		text-transform: capitalize;
 	}
 
 	&__text {
@@ -614,23 +620,13 @@
 		}
 		th {
 			border: 0;
-			background-color: #2a2a2a;
-
 			padding: toRem(13) toRem(40);
 
 			font-weight: 600;
-			font-size: toRem(14);
+			font-size: toRem(18);
 			line-height: 129%;
 			text-transform: uppercase;
-			color: #f8f9ec;
 			text-align: start;
-
-			&:first-child {
-				border-radius: toRem(16) 0 0 toRem(16);
-			}
-			&:last-child {
-				border-radius: 0 toRem(16) toRem(16) 0;
-			}
 
 			@media (max-width: $mobile) {
 				padding-inline: toRem(20);
@@ -644,7 +640,6 @@
 			font-weight: 400;
 			font-size: toRem(14);
 			line-height: 143%;
-			color: #f8f9ec;
 
 			@media (max-width: $tablet) {
 				min-width: toRem(190);
@@ -659,7 +654,11 @@
 		}
 		tbody {
 			tr {
-				border-bottom: 1px solid #2a2a2a;
+				border-bottom: 1px solid #B2B2B2;
+
+				&:first-child {
+					border-top: 1px solid #B2B2B2;
+				}
 			}
 		}
 	}

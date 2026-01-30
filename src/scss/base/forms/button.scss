@@ -10,8 +10,8 @@
 	font-family: var(--font-family);
 	font-weight: 700;
 	font-size: toRem(14);
-	color: #f8f9ec;
 
+	color: #F6F3EC;
 	background-color: #2a2a2a;
 	border-radius: toRem(16);
 	padding: toRem(5) toRem(20);
@@ -57,8 +57,8 @@
 	}
 
 	&_second {
-		background-color: #f8f9ec;
-		color: #2a2a2a;
+		color: #F6F3EC;
+		background-color: #2a2a2a;
 	}
 
 	&_grey {

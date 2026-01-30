@@ -12,7 +12,7 @@
 		color: inherit;
 		text-align: left;
 		border: toRem(1) solid #737373;
-		background-color: #f8f9ec;
+		background-color: #F6F3EC;
 
 		cursor: pointer;
 		width: 100%;
@@ -21,7 +21,7 @@
 		font-family: var(--font-family);
 		font-weight: 400;
 		font-size: toRem(16);
-		color: #737373;
+		color: #2A2A2A;
 
 		._select-open & {
 			border-radius: toRem(16) toRem(16) 0 0;
