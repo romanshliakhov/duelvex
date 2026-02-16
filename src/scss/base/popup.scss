@@ -28,7 +28,8 @@ body::after {
 .popup_show {
 	z-index: 150;
 	visibility: visible;
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	pointer-events: auto;
 }
 .popup_show .popup__content {
@@ -132,6 +133,7 @@ body::after {
 	}
 
 	&__title {
+		font-family: var(--font-family);
 		font-weight: 700;
 		font-size: toRem(32);
 		text-transform: capitalize;
@@ -233,6 +235,7 @@ body::after {
 	}
 
 	&__title {
+		font-family: var(--font-family);
 		font-weight: 700;
 		font-size: toRem(32);
 		text-transform: capitalize;

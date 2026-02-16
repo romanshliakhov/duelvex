@@ -155,12 +155,13 @@
 		color: #000;
 
 		&._select-selected {
-			background-color: #F65C5F;
+			// background-color: #F65C5F;
 		}
 
 		@media (any-hover: hover) {
 			&:hover {
-				background: #d9d9d9;
+				background: #F65C5F;
+				color: #F6F3EC;
 			}
 		}
 
