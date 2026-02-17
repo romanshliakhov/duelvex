@@ -47,6 +47,11 @@
 		.field_second & {
 			color: #2a2a2a;
 		}
+
+		span {
+			color: #ff1d1d;
+			font-size: 110%;
+		}
 	}
 
 	&__input {
@@ -202,8 +207,8 @@
 		min-width: toRem(115);
 
 		&:not(.button_second) {
-			color: #2A2A2A;
-			background-color: #F6F3EC;
+			color: #2a2a2a;
+			background-color: #f6f3ec;
 		}
 	}
 }
