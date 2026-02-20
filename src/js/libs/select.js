@@ -83,7 +83,10 @@ class SelectConstructor {
 		// Запуск ініціалізації
 		if (this.config.init) {
 			// Отримання всіх select на сторінці
-			const selectItems = data ? document.querySelectorAll(data) : document.querySelectorAll("select")
+			const selector = data ? data : "select"
+			const allSelects = document.querySelectorAll(selector)
+
+			const selectItems = [...allSelects].filter((el) => !el.closest('[name="checkout"]'))
 			if (selectItems.length) {
 				this.selectsInit(selectItems)
 				this.setLogging(`Прокинувся, построїв селектов: (${selectItems.length})`)
@@ -159,10 +162,7 @@ class SelectConstructor {
 			originalSelect.dataset.placeholder = this.getSelectPlaceholder(originalSelect).value
 			// Якщо увімкнено режим label
 			if (this.getSelectPlaceholder(originalSelect).label.show) {
-				const selectItemTitle = this.getSelectElement(
-					selectItem,
-					this.selectClasses.classSelectTitle
-				).selectElement
+				const selectItemTitle = this.getSelectElement(selectItem, this.selectClasses.classSelectTitle).selectElement
 				selectItemTitle.insertAdjacentHTML(
 					"afterbegin",
 					`<span class="${this.selectClasses.classSelectLabel}">${this.getSelectPlaceholder(originalSelect).label.text ? this.getSelectPlaceholder(originalSelect).label.text : this.getSelectPlaceholder(originalSelect).value}</span>`
@@ -192,9 +192,7 @@ class SelectConstructor {
 		// Додаємо ID селекту
 		selectItem.dataset.id = originalSelect.dataset.id
 		// Отримуємо клас оригінального селекту, створюємо модифікатор та додаємо його
-		originalSelect.dataset.classModif
-			? selectItem.classList.add(`select_${originalSelect.dataset.classModif}`)
-			: null
+		originalSelect.dataset.classModif ? selectItem.classList.add(`select_${originalSelect.dataset.classModif}`) : null
 		// Якщо множинний вибір, додаємо клас
 		originalSelect.multiple
 			? selectItem.classList.add(this.selectClasses.classSelectMultiple)
@@ -242,9 +240,7 @@ class SelectConstructor {
 						this.selectAction(selectItem)
 					} else if (targetElement.closest(this.getSelectClass(this.selectClasses.classSelectOption))) {
 						// Обробка кліка на елемент селекту
-						const optionItem = targetElement.closest(
-							this.getSelectClass(this.selectClasses.classSelectOption)
-						)
+						const optionItem = targetElement.closest(this.getSelectClass(this.selectClasses.classSelectOption))
 						this.optionAction(selectItem, originalSelect, optionItem)
 					}
 				}
@@ -268,7 +264,7 @@ class SelectConstructor {
 			`${this.getSelectClass(this.selectClasses.classSelect)}${this.getSelectClass(this.selectClasses.classSelectOpen)}`
 		)
 		if (selectActiveItems.length) {
-			selectActiveItems.forEach(selectActiveItem => {
+			selectActiveItems.forEach((selectActiveItem) => {
 				this.selectСlose(selectActiveItem)
 			})
 		}
@@ -333,7 +329,7 @@ class SelectConstructor {
 		if (originalSelect.multiple && originalSelect.hasAttribute("data-tags")) {
 			selectTitleValue = this.getSelectedOptionsData(originalSelect)
 				.elements.map(
-					option =>
+					(option) =>
 						`<span role="button" data-select-id="${selectItem.dataset.id}" data-value="${option.value}" class="_select-tag">${this.getSelectElementContent(option)}</span>`
 				)
 				.join("")
@@ -381,8 +377,7 @@ class SelectConstructor {
 	getSelectElementContent(selectOption) {
 		// Якщо для елемента вказано виведення картинки чи тексту, перебудовуємо конструкцію
 		const selectOptionData = selectOption.dataset.asset ? `${selectOption.dataset.asset}` : ""
-		const selectOptionDataHTML =
-			selectOptionData.indexOf("img") >= 0 ? `<img src="${selectOptionData}" alt="">` : selectOptionData
+		const selectOptionDataHTML = selectOptionData.indexOf("img") >= 0 ? `<img src="${selectOptionData}" alt="">` : selectOptionData
 		let selectOptionContentHTML = ``
 		selectOptionContentHTML += selectOptionData ? `<span class="${this.selectClasses.classSelectRow}">` : ""
 		selectOptionContentHTML += selectOptionData ? `<span class="${this.selectClasses.classSelectData}">` : ""
@@ -396,7 +391,7 @@ class SelectConstructor {
 	}
 	// Отримання даних плейсхолдера
 	getSelectPlaceholder(originalSelect) {
-		const selectPlaceholder = Array.from(originalSelect.options).find(option => !option.value)
+		const selectPlaceholder = Array.from(originalSelect.options).find((option) => !option.value)
 		if (selectPlaceholder) {
 			return {
 				value: selectPlaceholder.textContent,
@@ -416,16 +411,16 @@ class SelectConstructor {
 			// Якщо мультивибір
 			// Забираємо плейсхолдер, отримуємо решту вибраних елементів
 			selectedOptions = Array.from(originalSelect.options)
-				.filter(option => option.value)
-				.filter(option => option.selected)
+				.filter((option) => option.value)
+				.filter((option) => option.selected)
 		} else {
 			// Якщо одиничний вибір
 			selectedOptions.push(originalSelect.options[originalSelect.selectedIndex])
 		}
 		return {
-			elements: selectedOptions.map(option => option),
-			values: selectedOptions.filter(option => option.value).map(option => option.value),
-			html: selectedOptions.map(option => this.getSelectElementContent(option)),
+			elements: selectedOptions.map((option) => option),
+			values: selectedOptions.filter((option) => option.value).map((option) => option.value),
+			html: selectedOptions.map((option) => this.getSelectElementContent(option)),
 		}
 	}
 	// Конструктор елементів списку
@@ -438,15 +433,12 @@ class SelectConstructor {
 		if (selectOptions.length > 0) {
 			let selectOptionsHTML = ``
 			// Якщо вказано налаштування data-show, показуємо плейсхолдер у списку
-			if (
-				(this.getSelectPlaceholder(originalSelect) && !this.getSelectPlaceholder(originalSelect).show) ||
-				originalSelect.multiple
-			) {
-				selectOptions = selectOptions.filter(option => option.value)
+			if ((this.getSelectPlaceholder(originalSelect) && !this.getSelectPlaceholder(originalSelect).show) || originalSelect.multiple) {
+				selectOptions = selectOptions.filter((option) => option.value)
 			}
 			// Будуємо та виводимо основну конструкцію
 			selectOptionsHTML += `<div ${selectOptionsScroll} ${selectOptionsScroll ? `style="max-height: ${customMaxHeightValue}px"` : ""} class="${this.selectClasses.classSelectOptionsScroll}">`
-			selectOptions.forEach(selectOption => {
+			selectOptions.forEach((selectOption) => {
 				// Отримуємо конструкцію конкретного елемента списку
 				selectOptionsHTML += this.getOption(selectOption, originalSelect)
 			})
@@ -461,9 +453,7 @@ class SelectConstructor {
 			selectOption.selected && originalSelect.multiple ? ` ${this.selectClasses.classSelectOptionSelected}` : ""
 		// Якщо елемент вибраний і немає налаштування data-show-selected, приховуємо елемент
 		const selectOptionHide =
-			selectOption.selected && !originalSelect.hasAttribute("data-show-selected") && !originalSelect.multiple
-				? `hidden`
-				: ``
+			selectOption.selected && !originalSelect.hasAttribute("data-show-selected") && !originalSelect.multiple ? `hidden` : ``
 		// Якщо для елемента зазначений клас додаємо
 		const selectOptionClass = selectOption.dataset.class ? ` ${selectOption.dataset.class}` : ""
 		// Якщо вказано режим посилання
@@ -489,14 +479,9 @@ class SelectConstructor {
 	setOptionsPosition(selectItem) {
 		const originalSelect = this.getSelectElement(selectItem).originalSelect
 		const selectOptions = this.getSelectElement(selectItem, this.selectClasses.classSelectOptions).selectElement
-		const selectItemScroll = this.getSelectElement(
-			selectItem,
-			this.selectClasses.classSelectOptionsScroll
-		).selectElement
+		const selectItemScroll = this.getSelectElement(selectItem, this.selectClasses.classSelectOptionsScroll).selectElement
 		const customMaxHeightValue = +originalSelect.dataset.scroll ? `${+originalSelect.dataset.scroll}px` : ``
-		const selectOptionsPosMargin = +originalSelect.dataset.optionsMargin
-			? +originalSelect.dataset.optionsMargin
-			: 10
+		const selectOptionsPosMargin = +originalSelect.dataset.optionsMargin ? +originalSelect.dataset.optionsMargin : 10
 
 		if (!selectItem.classList.contains(this.selectClasses.classSelectOpen)) {
 			selectOptions.hidden = false
@@ -545,14 +530,12 @@ class SelectConstructor {
 				optionItem.classList.toggle(this.selectClasses.classSelectOptionSelected)
 				// Очищаємо вибрані елементи
 				const originalSelectSelectedItems = this.getSelectedOptionsData(originalSelect).elements
-				originalSelectSelectedItems.forEach(originalSelectSelectedItem => {
+				originalSelectSelectedItems.forEach((originalSelectSelectedItem) => {
 					originalSelectSelectedItem.removeAttribute("selected")
 				})
 				// Вибираємо елементи
-				const selectSelectedItems = selectItem.querySelectorAll(
-					this.getSelectClass(this.selectClasses.classSelectOptionSelected)
-				)
-				selectSelectedItems.forEach(selectSelectedItems => {
+				const selectSelectedItems = selectItem.querySelectorAll(this.getSelectClass(this.selectClasses.classSelectOptionSelected))
+				selectSelectedItems.forEach((selectSelectedItems) => {
 					originalSelect
 						.querySelector(`option[value = "${selectSelectedItems.dataset.value}"]`)
 						.setAttribute("selected", "selected")
@@ -563,22 +546,14 @@ class SelectConstructor {
 				if (!originalSelect.hasAttribute("data-show-selected")) {
 					setTimeout(() => {
 						// Спочатку все показати
-						if (
-							selectItem.querySelector(
-								`${this.getSelectClass(this.selectClasses.classSelectOption)}[hidden]`
-							)
-						) {
-							selectItem.querySelector(
-								`${this.getSelectClass(this.selectClasses.classSelectOption)}[hidden]`
-							).hidden = false
+						if (selectItem.querySelector(`${this.getSelectClass(this.selectClasses.classSelectOption)}[hidden]`)) {
+							selectItem.querySelector(`${this.getSelectClass(this.selectClasses.classSelectOption)}[hidden]`).hidden = false
 						}
 						// Приховуємо вибрану
 						optionItem.hidden = true
 					}, this.config.speed)
 				}
-				originalSelect.value = optionItem.hasAttribute("data-value")
-					? optionItem.dataset.value
-					: optionItem.textContent
+				originalSelect.value = optionItem.hasAttribute("data-value") ? optionItem.dataset.value : optionItem.textContent
 				this.selectAction(selectItem)
 			}
 			//Оновлюємо заголовок селекту
@@ -629,7 +604,7 @@ class SelectConstructor {
 		const selectOptionsItems = selectOptions.querySelectorAll(`.${this.selectClasses.classSelectOption} `)
 		const _this = this
 		selectInput.addEventListener("input", function () {
-			selectOptionsItems.forEach(selectOptionsItem => {
+			selectOptionsItems.forEach((selectOptionsItem) => {
 				if (selectOptionsItem.textContent.toUpperCase().includes(selectInput.value.toUpperCase())) {
 					selectOptionsItem.hidden = false
 				} else {
